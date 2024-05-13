@@ -8,13 +8,37 @@
 import Foundation
 
 public class SDKAPI: @unchecked Sendable {
-    private let eventPublisher: EventPublisher
-
-    public init() {
-        eventPublisher = EventPublisher()
+    public enum APIError: Error {
+        case xpc
     }
 
-    public func subscribe(handler: @escaping @Sendable (Event) -> Void) {
+#if os(macOS)
+    let publisherConnection: NSXPCConnection
+#endif
+    private let eventPublisher: EventPublisherProtocol
+
+    public init() throws {
+#if os(macOS)
+        publisherConnection = NSXPCConnection(serviceName: "dmitrii.shelonin.SDKPublisher")
+        publisherConnection.remoteObjectInterface = NSXPCInterface(with: EventPublisherProtocol.self)
+        publisherConnection.resume()
+        let publisher = publisherConnection.remoteObjectProxyWithErrorHandler { error in
+            print("==>>", error)
+        }
+        guard let publisher = publisher as? EventPublisherProtocol else { throw APIError.xpc }
+        eventPublisher = publisher
+#else
+        eventPublisher = EventPublisher()
+#endif
+    }
+
+    deinit {
+#if os(macOS)
+        publisherConnection.invalidate()
+#endif
+    }
+
+    public func subscribe(handler: @escaping @Sendable (NSDate) -> Void) {
         eventPublisher.subscribe(handler: handler)
     }
 }

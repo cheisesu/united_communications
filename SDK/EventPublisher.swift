@@ -7,19 +7,26 @@
 
 import Foundation
 
-extension Date: Event {}
+@objc(EventPublisherProtocol)
+protocol EventPublisherProtocol {
+    func subscribe(handler: @escaping @Sendable (NSDate) -> Void)
+}
 
-class EventPublisher: @unchecked Sendable {
+class EventPublisher: NSObject, EventPublisherProtocol, @unchecked Sendable {
     private let handlerLock: NSLock
-    private var handler: ((Event) -> Void)?
+    private var handler: ((NSDate) -> Void)?
     private var publishingTimer: Timer!
 
-    init() {
+    override init() {
         handlerLock = NSLock()
+        super.init()
+        print("++", "init")
         publishingTimer = Timer(timeInterval: 1, repeats: true, block: { [weak self] _ in
             self?.handlerLock.lock()
             defer { self?.handlerLock.unlock() }
-            self?.handler?(Date())
+            let date = NSDate()
+            print("++", "event", date, String(describing: self?.handler))
+            self?.handler?(date)
         })
         RunLoop.main.add(publishingTimer, forMode: .default)
     }
@@ -28,7 +35,7 @@ class EventPublisher: @unchecked Sendable {
         publishingTimer.invalidate()
     }
 
-    func subscribe(handler: @escaping @Sendable (Event) -> Void) {
+    func subscribe(handler: @escaping @Sendable (NSDate) -> Void) {
         handlerLock.lock()
         defer { handlerLock.unlock() }
         self.handler = handler
