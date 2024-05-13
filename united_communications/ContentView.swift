@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import SDK
+
+private let api = SDKAPI()
 
 struct ContentView: View {
     var body: some View {
@@ -16,6 +19,11 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear(perform: {
+            api.subscribe { event in
+                print("EVENT", event)
+            }
+        })
     }
 }
 
