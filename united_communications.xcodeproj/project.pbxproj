@@ -14,8 +14,10 @@
 		271D1AA32BF2A97800D535C6 /* SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271D1A9D2BF2A97800D535C6 /* SDK.framework */; };
 		271D1AA42BF2A97800D535C6 /* SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 271D1A9D2BF2A97800D535C6 /* SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		271D1AAA2BF2A98400D535C6 /* SDKAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271D1AA92BF2A98400D535C6 /* SDKAPI.swift */; };
-		271D1AAC2BF2A9C700D535C6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271D1AAB2BF2A9C700D535C6 /* Events.swift */; };
 		271D1AAE2BF2AB4000D535C6 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271D1AAD2BF2AB4000D535C6 /* EventPublisher.swift */; };
+		271D1ACF2BF2ADA100D535C6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271D1ACE2BF2ADA100D535C6 /* main.swift */; };
+		271D1AD42BF2ADA100D535C6 /* SDKPublisher.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 271D1AC82BF2ADA100D535C6 /* SDKPublisher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		271D1ADA2BF2B49800D535C6 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271D1AAD2BF2AB4000D535C6 /* EventPublisher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +27,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 271D1A9C2BF2A97800D535C6;
 			remoteInfo = SDK;
+		};
+		271D1AD22BF2ADA100D535C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 271D1A7E2BF2A88700D535C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 271D1AC72BF2ADA100D535C6;
+			remoteInfo = SDKPublisher;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -40,6 +49,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		271D1AD52BF2ADA100D535C6 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				271D1AD42BF2ADA100D535C6 /* SDKPublisher.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +70,10 @@
 		271D1A9D2BF2A97800D535C6 /* SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		271D1A9F2BF2A97800D535C6 /* SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDK.h; sourceTree = "<group>"; };
 		271D1AA92BF2A98400D535C6 /* SDKAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKAPI.swift; sourceTree = "<group>"; };
-		271D1AAB2BF2A9C700D535C6 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		271D1AAD2BF2AB4000D535C6 /* EventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPublisher.swift; sourceTree = "<group>"; };
+		271D1AC82BF2ADA100D535C6 /* SDKPublisher.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = SDKPublisher.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		271D1ACE2BF2ADA100D535C6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		271D1AD02BF2ADA100D535C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +92,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		271D1AC52BF2ADA100D535C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +107,7 @@
 			children = (
 				271D1A882BF2A88700D535C6 /* united_communications */,
 				271D1A9E2BF2A97800D535C6 /* SDK */,
+				271D1AC92BF2ADA100D535C6 /* SDKPublisher */,
 				271D1A872BF2A88700D535C6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +117,7 @@
 			children = (
 				271D1A862BF2A88700D535C6 /* united_communications.app */,
 				271D1A9D2BF2A97800D535C6 /* SDK.framework */,
+				271D1AC82BF2ADA100D535C6 /* SDKPublisher.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,10 +137,18 @@
 			children = (
 				271D1A9F2BF2A97800D535C6 /* SDK.h */,
 				271D1AA92BF2A98400D535C6 /* SDKAPI.swift */,
-				271D1AAB2BF2A9C700D535C6 /* Events.swift */,
 				271D1AAD2BF2AB4000D535C6 /* EventPublisher.swift */,
 			);
 			path = SDK;
+			sourceTree = "<group>";
+		};
+		271D1AC92BF2ADA100D535C6 /* SDKPublisher */ = {
+			isa = PBXGroup;
+			children = (
+				271D1ACE2BF2ADA100D535C6 /* main.swift */,
+				271D1AD02BF2ADA100D535C6 /* Info.plist */,
+			);
+			path = SDKPublisher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,15 +192,34 @@
 				271D1A992BF2A97800D535C6 /* Sources */,
 				271D1A9A2BF2A97800D535C6 /* Frameworks */,
 				271D1A9B2BF2A97800D535C6 /* Resources */,
+				271D1AD52BF2ADA100D535C6 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				271D1AD32BF2ADA100D535C6 /* PBXTargetDependency */,
 			);
 			name = SDK;
 			productName = SDK;
 			productReference = 271D1A9D2BF2A97800D535C6 /* SDK.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		271D1AC72BF2ADA100D535C6 /* SDKPublisher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 271D1AD82BF2ADA100D535C6 /* Build configuration list for PBXNativeTarget "SDKPublisher" */;
+			buildPhases = (
+				271D1AC42BF2ADA100D535C6 /* Sources */,
+				271D1AC52BF2ADA100D535C6 /* Frameworks */,
+				271D1AC62BF2ADA100D535C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDKPublisher;
+			productName = SDKPublisher;
+			productReference = 271D1AC82BF2ADA100D535C6 /* SDKPublisher.xpc */;
+			productType = "com.apple.product-type.xpc-service";
 		};
 /* End PBXNativeTarget section */
 
@@ -180,6 +238,9 @@
 						CreatedOnToolsVersion = 15.4;
 						LastSwiftMigration = 1540;
 					};
+					271D1AC72BF2ADA100D535C6 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 				};
 			};
 			buildConfigurationList = 271D1A812BF2A88700D535C6 /* Build configuration list for PBXProject "united_communications" */;
@@ -197,6 +258,7 @@
 			targets = (
 				271D1A852BF2A88700D535C6 /* united_communications */,
 				271D1A9C2BF2A97800D535C6 /* SDK */,
+				271D1AC72BF2ADA100D535C6 /* SDKPublisher */,
 			);
 		};
 /* End PBXProject section */
@@ -211,6 +273,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		271D1A9B2BF2A97800D535C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		271D1AC62BF2ADA100D535C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -233,9 +302,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				271D1AAC2BF2A9C700D535C6 /* Events.swift in Sources */,
 				271D1AAA2BF2A98400D535C6 /* SDKAPI.swift in Sources */,
 				271D1AAE2BF2AB4000D535C6 /* EventPublisher.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		271D1AC42BF2ADA100D535C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				271D1ADA2BF2B49800D535C6 /* EventPublisher.swift in Sources */,
+				271D1ACF2BF2ADA100D535C6 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +323,11 @@
 			isa = PBXTargetDependency;
 			target = 271D1A9C2BF2A97800D535C6 /* SDK */;
 			targetProxy = 271D1AA12BF2A97800D535C6 /* PBXContainerItemProxy */;
+		};
+		271D1AD32BF2ADA100D535C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 271D1AC72BF2ADA100D535C6 /* SDKPublisher */;
+			targetProxy = 271D1AD22BF2ADA100D535C6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -529,6 +611,52 @@
 			};
 			name = Release;
 		};
+		271D1AD62BF2ADA100D535C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96ECRH76W5;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SDKPublisher/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SDKPublisher;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dmitrii.shelonin.SDKPublisher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		271D1AD72BF2ADA100D535C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96ECRH76W5;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SDKPublisher/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SDKPublisher;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dmitrii.shelonin.SDKPublisher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -555,6 +683,15 @@
 			buildConfigurations = (
 				271D1AA62BF2A97800D535C6 /* Debug */,
 				271D1AA72BF2A97800D535C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		271D1AD82BF2ADA100D535C6 /* Build configuration list for PBXNativeTarget "SDKPublisher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				271D1AD62BF2ADA100D535C6 /* Debug */,
+				271D1AD72BF2ADA100D535C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

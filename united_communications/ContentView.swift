@@ -8,7 +8,7 @@
 import SwiftUI
 import SDK
 
-private let api = SDKAPI()
+private let api = try! SDKAPI()
 
 struct ContentView: View {
     var body: some View {
@@ -20,10 +20,13 @@ struct ContentView: View {
         }
         .padding()
         .onAppear(perform: {
-            api.subscribe { event in
-                print("EVENT", event)
-            }
+            api.subscribe(handler: handler)
         })
+    }
+
+    @Sendable
+    func handler(_ event: NSDate) {
+        print("EVENT", event)
     }
 }
 
