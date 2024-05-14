@@ -74,7 +74,6 @@
 		271D1AC82BF2ADA100D535C6 /* SDKPublisher.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = SDKPublisher.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		271D1ACE2BF2ADA100D535C6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		271D1AD02BF2ADA100D535C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		271D1AD12BF2ADA100D535C6 /* SDKPublisher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDKPublisher.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +147,6 @@
 			children = (
 				271D1ACE2BF2ADA100D535C6 /* main.swift */,
 				271D1AD02BF2ADA100D535C6 /* Info.plist */,
-				271D1AD12BF2ADA100D535C6 /* SDKPublisher.entitlements */,
 			);
 			path = SDKPublisher;
 			sourceTree = "<group>";
@@ -616,7 +614,6 @@
 		271D1AD62BF2ADA100D535C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = SDKPublisher/SDKPublisher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -640,7 +637,6 @@
 		271D1AD72BF2ADA100D535C6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = SDKPublisher/SDKPublisher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

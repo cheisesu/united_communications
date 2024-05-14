@@ -7,29 +7,19 @@
 
 import Foundation
 
-class XPCInterface: NSXPCInterface {
-    init(with_ proto: Protocol) {
-        super.init()
-        self.protocol = proto
-        print("++", "init", proto)
-    }
-
-    deinit {
-        print("++", "deinit", self)
-    }
-}
-
 class EventPublisherDelegate: NSObject, NSXPCListenerDelegate {
 
     /// This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
     func listener(_ listener: NSXPCListener, shouldAcceptNewConnection newConnection: NSXPCConnection) -> Bool {
         
+        newConnection.remoteObjectInterface = NSXPCInterface(with: EventSubscriber.self)
+        guard let subscriber = newConnection.remoteObjectProxy as? EventSubscriber else { return false }
         // Configure the connection.
         // First, set the interface that the exported object implements.
-        newConnection.exportedInterface = XPCInterface(with_: EventPublisherProtocol.self)
+        newConnection.exportedInterface = NSXPCInterface(with: EventPublisherProtocol.self)
 
         // Next, set the object that the connection exports. All messages sent on the connection to this service will be sent to the exported object to handle. The connection retains the exported object.
-        let exportedObject = EventPublisher()
+        let exportedObject = EventPublisher(subscriber)
         newConnection.exportedObject = exportedObject
         newConnection.interruptionHandler = {
             print("--", "connection interrupted")

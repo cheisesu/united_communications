@@ -7,19 +7,32 @@
 
 import Foundation
 
+class _EventSubscriber: NSObject, @unchecked Sendable, EventSubscriber {
+    var handler: ((NSDate) -> Void)?
+    func handle(new date: NSDate) {
+        handler?(date)
+    }
+}
+
 public class SDKAPI: @unchecked Sendable {
     public enum APIError: Error {
         case xpc
     }
 
 #if os(macOS)
-    let publisherConnection: NSXPCConnection
+    private let publisherConnection: NSXPCConnection
 #endif
+    private let subscriber: _EventSubscriber
     private let eventPublisher: EventPublisherProtocol
 
     public init() throws {
+        let subscriber = _EventSubscriber()
+        self.subscriber = subscriber
 #if os(macOS)
         publisherConnection = NSXPCConnection(serviceName: "dmitrii.shelonin.SDKPublisher")
+        publisherConnection.exportedInterface = NSXPCInterface(with: EventSubscriber.self)
+        publisherConnection.exportedObject = subscriber
+
         publisherConnection.remoteObjectInterface = NSXPCInterface(with: EventPublisherProtocol.self)
         publisherConnection.resume()
         let publisher = publisherConnection.remoteObjectProxyWithErrorHandler { error in
@@ -28,7 +41,7 @@ public class SDKAPI: @unchecked Sendable {
         guard let publisher = publisher as? EventPublisherProtocol else { throw APIError.xpc }
         eventPublisher = publisher
 #else
-        eventPublisher = EventPublisher()
+        eventPublisher = EventPublisher(subscriber)
 #endif
     }
 
@@ -39,6 +52,7 @@ public class SDKAPI: @unchecked Sendable {
     }
 
     public func subscribe(handler: @escaping @Sendable (NSDate) -> Void) {
-        eventPublisher.subscribe(handler: handler)
+        subscriber.handler = handler
+        eventPublisher.subscribe(handler: {})
     }
 }
